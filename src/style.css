@@ -9,4 +9,13 @@ footer {
   background-color: #1c1e22;
   height: 10%;
   width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+footer p {
+  text-align: center;
+  margin-left: 10%;
+  display: flex;
+  align-items: center;
 }
