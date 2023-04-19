@@ -9,28 +9,24 @@ const options = {
   },
 };
 
-const fetchData = () => {
-  return new Promise((resolve, reject) => {
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc', options)
-      .then((response) => response.json())
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((err) => reject(err));
-  });
-};
+const fetchData = () => new Promise((resolve, reject) => {
+  fetch('https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc', options)
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((err) => reject(err));
+});
 
-const createGameCardHTML = (game) => {
-  return `
-    <div class="game-card">
-      <img src="${game.thumbnail}" alt="${game.title}" />
-      <h2>${game.title}</h2>
-      <p>${game.short_description}</p>
-      <a href="${game.game_url}" target="_blank">Play Now!</a>
-      <button class="comments-btn">Comments</button>
-    </div>
-  `;
-};
+const createGameCardHTML = (game) => `
+  <div class="game-card">
+    <img src="${game.thumbnail}" alt="${game.title}" />
+    <h2>${game.title}</h2>
+    <p>${game.short_description}</p>
+    <a href="${game.game_url}" target="_blank">Play Now!</a>
+    <button class="comments-btn">Comments</button>
+  </div>
+`;
 
 const renderGameCards = (games) => {
   games.forEach((game) => {
