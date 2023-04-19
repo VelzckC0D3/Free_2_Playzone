@@ -105,12 +105,25 @@ footer p {
 }
 
 .game-card a {
+  display: inline-block;
   background-color: #8b0000;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  margin-right: 10px;
+}
+
+.comments-btn {
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 a.btn:hover {
