@@ -20,6 +20,7 @@ fetch('https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmor
           <h2>${game.title}</h2>
           <p>${game.short_description}</p>
           <a href="${game.game_url}" target="_blank">Play Now!</a>
+          <button class="comments-btn">Comments</button>
         </div>
       `;
 
