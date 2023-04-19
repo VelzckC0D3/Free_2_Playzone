@@ -20,3 +20,49 @@ footer p {
   display: flex;
   align-items: center;
 }
+
+/* HEADER HEADER HEADER */
+
+.headerCont {
+  width: 100vw;
+  height: 3rem;
+  padding: 1rem 0;
+
+  /*   margin: 1rem; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 2px 9px 23px 0 rgba(0, 0, 0, 0.3);
+}
+
+.headerLogo {
+  background-image: url(./img/logo-white.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  height: 100%;
+  width: 30%;
+  display: flex;
+}
+
+/* .navCont {
+} */
+
+.navUl {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
+
+.navLink,
+.navLink:visited,
+.navLink:link {
+  color: white;
+  text-decoration: none;
+}
+
+/* HEADER HEADER HEADER */
