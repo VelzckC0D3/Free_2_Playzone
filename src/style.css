@@ -50,7 +50,7 @@ body {
 
 /* HEADER HEADER HEADER */
 
-/*CARDS*/
+/* CARDS */
 #game-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

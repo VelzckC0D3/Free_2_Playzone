@@ -12,7 +12,7 @@ const options = {
 fetch('https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc', options)
   .then((response) => response.json())
   .then((data) => {
-    for (let i = 0; i < data.length; i=i+1) {
+    for (let i = 0; i < data.length; i += 1) {
       const game = data[i];
       const gameCardHTML = `
         <div class="game-card">
