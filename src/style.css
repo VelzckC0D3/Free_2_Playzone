@@ -4,6 +4,54 @@ body {
   margin: 0;
 }
 
+/*CARDS*/
+#game-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin: 30px 15% 30px 15%;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  height: 350px;
+}
+
+.game-card img {
+  max-width: 100%;
+  max-height: 50%;
+  object-fit: cover;
+}
+
+.game-card h2 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.game-card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.game-card a {
+  background-color: #8b0000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.btn:hover {
+  background-color: #b22222;
+}
+
 footer {
   position: fixed;
   bottom: 0;
