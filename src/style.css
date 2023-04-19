@@ -21,19 +21,19 @@ footer p {
   align-items: center;
 }
 
-
 /* HEADER HEADER HEADER */
 
 .headerCont {
   width: 100vw;
   height: 3rem;
   padding: 1rem 0;
-/*   margin: 1rem; */
+
+  /*   margin: 1rem; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 2px 9px 23px 0px rgba(0,0,0,0.3);
+  box-shadow: 2px 9px 23px 0 rgba(0, 0, 0, 0.3);
 }
 
 .headerLogo {
@@ -46,8 +46,8 @@ footer p {
   display: flex;
 }
 
-.navCont {
-}
+/* .navCont {
+} */
 
 .navUl {
   display: flex;
@@ -58,11 +58,11 @@ footer p {
   gap: 1rem;
 }
 
-.navLink, 
-.navLink:visited, 
+.navLink,
+.navLink:visited,
 .navLink:link {
-color: white;
-text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 /* HEADER HEADER HEADER */
