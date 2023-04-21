@@ -31,14 +31,11 @@ const getLikes = async () => {
   const data = await res.json();
   const objetc1 = {};
   data.forEach((element) => {
-    if (element.likes !== 0) {
-      objetc1[element.item_id] = element.likes;
-    } else if (element.likes === undefined) {
-      objetc1[element.item_id] = 0;
-    }
+    objetc1[element.item_id] = element.likes !== undefined ? element.likes : 0;
   });
   return objetc1;
 };
+
 
 const fetchData = () => new Promise((resolve, reject) => {
   fetch(
@@ -60,6 +57,7 @@ const createGameCardHTML = (game, index) => `
     <div class="game-actions">
       <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
+      <span id="likes-count-${index}" class="likes-count">Likes for game ${game.id}: ${likes[game.id]}</span>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
     </div>
   </div>
@@ -105,20 +103,39 @@ const createGameCardHTML = (game, index) => `
   </div>
 `;
 
+const buttons = document.querySelectorAll('.like-btn');
+buttons.forEach((button, index) => {
+  const gameId = games[index].id;
+  const span = document.querySelector(`#likes-${index}`);
+  span.textContent = likes[gameId];
+
+  button.addEventListener('click', async () => {
+    await addLike(gameId);
+    likes[gameId]++;
+    span.textContent = likes[gameId];
+  });
+});
+
+let likes = {};
+
 const renderGameCards = (games) => {
   games.forEach((game, index) => {
     const gameCardHTML = createGameCardHTML(game, index);
     gameCardsElement.insertAdjacentHTML('beforeend', gameCardHTML);
 
     const likeBtn = document.querySelector(`#like-btn-${index}`);
-    likeBtn.addEventListener('click', async () => {  // agregar "async" para poder usar "await"
-      await likeGame(game.id);  // esperar a que termine la llamada a la función "likeGame"
-      const likes = await getLikes();  // esperar a que termine la llamada a la función "getLikes"
+    likeBtn.addEventListener('click', async () => {  
+      // dentro del event listener del botón de like
+    const gameId = game.id;
+    await likeGame(gameId);
+      await likeGame(game.id);  
+      const likes = await getLikes(); 
+      const span = document.querySelector(`#likes-count-${index}`);
+span.textContent = `Likes for game ${game.id}: ${likes[game.id]}`;
       console.log(`Likes for game ${game.id}:`, likes[game.id]);
     });
   });
 };
-
 
 
 const handleFetchError = (err) => {
