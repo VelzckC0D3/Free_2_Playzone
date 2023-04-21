@@ -10,6 +10,36 @@ const options = {
   },
 };
 
+const invAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/uX47mGCyQ3QN2ImlxrQR';
+
+const likeGame = async (id) => {
+  const API_URL = `${invAPI}/likes`;
+  fetch(API_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      item_id: id,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+};
+
+const getLikes = async () => {
+  const API_URL = `${invAPI}/likes`;
+  const res = await fetch(API_URL);
+  const data = await res.json();
+  const objetc1 = {};
+  data.forEach((element) => {
+    if (element.likes !== 0) {
+      objetc1[element.item_id] = element.likes;
+    } else if (element.likes === undefined) {
+      objetc1[element.item_id] = 0;
+    }
+  });
+  return objetc1;
+};
+
 const fetchData = () => new Promise((resolve, reject) => {
   fetch(
     'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc',
@@ -29,7 +59,7 @@ const createGameCardHTML = (game, index) => `
     <p class="game-desc">${game.short_description}</p>
     <div class="game-actions">
       <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
-      <button class="like-btn">❤️</button>
+      <button id="like-btn-${index}" class="like-btn">❤️</button>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
     </div>
   </div>
@@ -79,8 +109,17 @@ const renderGameCards = (games) => {
   games.forEach((game, index) => {
     const gameCardHTML = createGameCardHTML(game, index);
     gameCardsElement.insertAdjacentHTML('beforeend', gameCardHTML);
+
+    const likeBtn = document.querySelector(`#like-btn-${index}`);
+    likeBtn.addEventListener('click', async () => {  // agregar "async" para poder usar "await"
+      await likeGame(game.id);  // esperar a que termine la llamada a la función "likeGame"
+      const likes = await getLikes();  // esperar a que termine la llamada a la función "getLikes"
+      console.log(`Likes for game ${game.id}:`, likes[game.id]);
+    });
   });
 };
+
+
 
 const handleFetchError = (err) => {
   console.error(err);
