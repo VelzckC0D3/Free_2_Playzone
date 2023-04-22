@@ -47,6 +47,28 @@ const fetchData = () => new Promise((resolve, reject) => {
     })
     .catch((err) => reject(err));
 });
+
+const addComment = async (id, comment) => {
+  const API_URL = `${invAPI}/comments`;
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      item_id: id,
+      username: 'Anonymous',
+      comment,
+    }),
+  });
+  return response.json();
+};
+
+const getComments = async (id) => {
+  const API_URL = `${invAPI}/comments?item_id=${id}`;
+  const response = await fetch(API_URL);
+  return response.json();
+};
 const likes = {};
 
 const createGameCardHTML = (game, index) => `
@@ -90,7 +112,8 @@ const createGameCardHTML = (game, index) => `
 
         
         <form id="add-comment">
-        <input class="commentInput" type="text" placeholder="Add a new comment" />
+        <input class="userInput" type="text" placeholder="Guest" /><br>
+        <input class="commentInput" type="text" placeholder="Add a new comment" /><br>
         <button type="submit">Submit</button>
         </form>     
         
