@@ -53,7 +53,7 @@ const createGameCardHTML = (game, index) => `
   <div class="game-card">
     <img class="game-img" src="${game.thumbnail}" alt="${game.title}" />
     <h2 class="game-title">${game.title}</h2>
-    <p class="game-desc">${game.short_description}</p>
+    <p class="game-desc">${game.short_description.slice(0, 200)}${game.short_description.length > 200 ? '...' : ''}</p>
     <div class="game-actions">
       <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
@@ -118,24 +118,27 @@ buttons.forEach((button, index) => {
 
 let likes = {};
 
-const renderGameCards = (games) => {
+const renderGameCards = async (games) => {
+  const likes = await getLikes();
+
   games.forEach((game, index) => {
     const gameCardHTML = createGameCardHTML(game, index);
     gameCardsElement.insertAdjacentHTML('beforeend', gameCardHTML);
 
+    const span = document.querySelector(`#likes-count-${index}`);
+    span.textContent = `Likes for game ${game.id}: ${likes[game.id]}`;
+    
     const likeBtn = document.querySelector(`#like-btn-${index}`);
-    likeBtn.addEventListener('click', async () => {  
-      // dentro del event listener del botón de like
-    const gameId = game.id;
-    await likeGame(gameId);
-      await likeGame(game.id);  
-      const likes = await getLikes(); 
-      const span = document.querySelector(`#likes-count-${index}`);
-span.textContent = `Likes for game ${game.id}: ${likes[game.id]}`;
-      console.log(`Likes for game ${game.id}:`, likes[game.id]);
+    likeBtn.addEventListener('click', async () => {
+      const gameId = game.id;
+      await likeGame(gameId);
+      const updatedLikes = await getLikes();
+      span.textContent = `Likes for game ${game.id}: ${updatedLikes[gameId]}`;
     });
   });
 };
+
+
 
 
 const handleFetchError = (err) => {
