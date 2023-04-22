@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './style.css';
 import 'bootstrap';
 
@@ -36,6 +37,7 @@ const getLikes = async () => {
   return objetc1;
 };
 
+// eslint-disable-next-line no-unused-vars
 const addComment = async (id, comment) => {
   const API_URL = `${invAPI}/comments`;
   const response = await fetch(API_URL, {
@@ -83,11 +85,15 @@ const createGameCardHTML = (game, index) => `
   <div class="game-card">
     <img class="game-img" src="${game.thumbnail}" alt="${game.title}" />
     <h2 class="game-title">${game.title}</h2>
-    <p class="game-desc">${game.short_description.slice(0, 200)}${game.short_description.length > 200 ? '...' : ''}</p>
+    <p class="game-desc">${game.short_description.slice(0, 200)}${
+  game.short_description.length > 200 ? '...' : ''
+}</p>
     <div class="game-actions">
       <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
-      <span id="likes-count-${index}" class="likes-count">Likes for game ${game.id}: ${likes[game.id]}</span>
+      <span id="likes-count-${index}" class="likes-count">Likes for game ${
+  game.id
+}: ${likes[game.id]}</span>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
     </div>
   </div>
@@ -114,7 +120,8 @@ const createGameCardHTML = (game, index) => `
         <div class="modal-footer">
         <div class="modal-comments">
         <h5 class="comments-tittle">Comments</h5>
-        <div class="comments"> HERE ARE GOING TO BE THE COMMENTS </comments>
+        <div class="comments-${game.id}">       
+        </comments>
         </div>
 
 
@@ -151,10 +158,22 @@ const renderGameCards = async (games) => {
       const updatedLikes = await getLikes();
       span.textContent = `${updatedLikes[gameId]} likes`;
     });
+    /*
+    const commentsBtn = document.querySelector('.comments-btn')
+    commentsBtn.addEventListener('click', ()=> {
+      console.log(`${game.id}`)
+    }) */
+  });
+
+  const commentsBtn = document.querySelectorAll('.comments-btn');
+  commentsBtn.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      const commentsCont = document.querySelector('.comments-', `${games[index].id}`);
+      console.log(games[index].id);
+      console.log(commentsCont);
+    });
   });
 };
-
-
 
 const handleFetchError = (err) => {
   console.error(err);
