@@ -126,14 +126,14 @@ const renderGameCards = async (games) => {
     gameCardsElement.insertAdjacentHTML('beforeend', gameCardHTML);
 
     const span = document.querySelector(`#likes-count-${index}`);
-    span.textContent = `Likes for game ${game.id}: ${likes[game.id]}`;
+    span.textContent = `${likes[game.id]} likes`;
     
     const likeBtn = document.querySelector(`#like-btn-${index}`);
     likeBtn.addEventListener('click', async () => {
       const gameId = game.id;
       await likeGame(gameId);
       const updatedLikes = await getLikes();
-      span.textContent = `Likes for game ${game.id}: ${updatedLikes[gameId]}`;
+      span.textContent = `${updatedLikes[gameId]} likes`;
     });
   });
 };
