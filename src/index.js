@@ -36,18 +36,6 @@ const getLikes = async () => {
   return objetc1;
 };
 
-const fetchData = () => new Promise((resolve, reject) => {
-  fetch(
-    'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc',
-    options,
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      resolve(data);
-    })
-    .catch((err) => reject(err));
-});
-
 const addComment = async (id, comment) => {
   const API_URL = `${invAPI}/comments`;
   const response = await fetch(API_URL, {
@@ -69,6 +57,26 @@ const getComments = async (id) => {
   const response = await fetch(API_URL);
   return response.json();
 };
+
+getComments(10)
+  .then((comments) => {
+    console.log(comments);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+const fetchData = () => new Promise((resolve, reject) => {
+  fetch(
+    'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc',
+    options,
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((err) => reject(err));
+});
 const likes = {};
 
 const createGameCardHTML = (game, index) => `
@@ -145,6 +153,8 @@ const renderGameCards = async (games) => {
     });
   });
 };
+
+
 
 const handleFetchError = (err) => {
   console.error(err);
