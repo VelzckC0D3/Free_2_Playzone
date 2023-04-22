@@ -38,7 +38,13 @@ const getLikes = async () => {
   return objetc1;
 };
 
-const addComment = async (id, name, comment) => {
+const getComments = async (id) => {
+  const API_URL = `${invAPI}/comments?item_id=${id}`;
+  const response = await fetch(API_URL);
+  return response.json();
+};
+
+const addComment = async (gameId, name, comment) => {
   const API_URL = `${invAPI}/comments`;
   const response = await fetch(API_URL, {
     method: 'POST',
@@ -46,21 +52,17 @@ const addComment = async (id, name, comment) => {
       'Content-type': 'application/json; charset=UTF-8',
     },
     body: JSON.stringify({
-      item_id: id,
+      item_id: gameId,
       username: name,
       comment,
     }),
   });
   if (response.ok) {
+    // Refresh comments
+    getComments(gameId);
     return response;
   }
   throw new Error(`Request failed with status ${response.status}`);
-};
-
-const getComments = async (id) => {
-  const API_URL = `${invAPI}/comments?item_id=${id}`;
-  const response = await fetch(API_URL);
-  return response.json();
 };
 
 getComments(8).then((comments) => {
@@ -166,52 +168,48 @@ const renderGameCards = async (games) => {
       span.textContent = `${updatedLikes[gameId]} likes`;
     });
   });
-const commentsBtn = document.querySelectorAll('.comments-btn');
-let disabled = false; // flag to keep track of whether the action is disabled or not
+  const commentsBtn = document.querySelectorAll('.comments-btn');
+  const disabled = false; // flag to keep track of whether the action is disabled or not
 
-commentsBtn.forEach((button, index) => {
-  button.addEventListener('click', async () => {
-    if (disabled) {
-      return; // exit the function if the action is disabled
-    }
+  commentsBtn.forEach((button, index) => {
+    button.addEventListener('click', async () => {
+      if (disabled) {
+        return; // exit the function if the action is disabled
+      }
 
-    // disable the action for 30 seconds
-    disabled = true;
-    setTimeout(() => {
-      disabled = false;
-    }, 30000);
+      const commentsCont = document.querySelector('.comments-' + `${games[index].id}`);
+      console.log(games[index].id);
+      console.log(commentsCont);
 
-    const commentsCont = document.querySelector('.comments-' + `${games[index].id}`);
-    console.log(games[index].id);
-    console.log(commentsCont);
+      // Fetch comments for item
+      const commentsResponse = await fetch(`${invAPI}/comments?item_id=${games[index].id}`);
+      const commentsData = await commentsResponse.json();
 
-    // Fetch comments for item
-    const commentsResponse = await fetch(`${invAPI}/comments?item_id=${games[index].id}`);
-    const commentsData = await commentsResponse.json();
-
-    // Format comments data into HTML
-    const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
+      // Format comments data into HTML
+      const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
     <li class="comment-date"> ${comment.creation_date} </li>
     <li class="comment-user"> ${comment.username}: </li>
     <li class="comment-comment"> ${comment.comment} </li>
               </ul>`).join('');
 
-    const newComment = document.createElement('div');
-    newComment.innerHTML = commentsHTML;
+      const newComment = document.createElement('div');
+      newComment.innerHTML = commentsHTML;
 
-    // Clear existing comments
-    commentsCont.innerHTML = '';
+      // Clear existing comments
+      commentsCont.innerHTML = '';
 
-    commentsCont.appendChild(newComment);
+      commentsCont.appendChild(newComment);
+    });
   });
-});
 
-
+  let canSubmitComment = true;
   const submitBtn = document.querySelectorAll('.submit-btn');
 
   submitBtn.forEach((button, index) => {
     button.addEventListener('click', async (event) => {
       event.preventDefault();
+      if (!canSubmitComment) return;
+
       const form = button.closest('form');
       const name = form.querySelector('.userInput').value;
       const comment = form.querySelector('.commentInput').value;
@@ -221,25 +219,25 @@ commentsBtn.forEach((button, index) => {
         return;
       }
 
+      canSubmitComment = false;
+      setTimeout(() => {
+        canSubmitComment = true;
+      }, 5000); // wait 5 seconds before enabling comments again
+
       await addComment(gameId, name, comment);
 
-      // Update comments section with new comment
       const commentsCont = document.querySelector('.comments-' + `${gameId}`);
-      const commentsResponse = await fetch(`${invAPI}/comments?item_id=${gameId}`);
-      const commentsData = await commentsResponse.json();
+      const commentsData = await getComments(gameId);
       const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
       <li class="comment-date"> ${comment.creation_date} </li>
       <li class="comment-user"> ${comment.username}: </li>
       <li class="comment-comment"> ${comment.comment} </li>
-                </ul>`).join('');
+    </ul>`).join('');
       commentsCont.innerHTML = commentsHTML;
 
       // clear the input fields
       form.querySelector('.userInput').value = '';
       form.querySelector('.commentInput').value = '';
-
-      // Update comments section with latest comments
-      getComments(gameId);
     });
   });
 };
