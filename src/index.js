@@ -36,7 +36,6 @@ const getLikes = async () => {
   return objetc1;
 };
 
-
 const fetchData = () => new Promise((resolve, reject) => {
   fetch(
     'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc',
@@ -48,6 +47,7 @@ const fetchData = () => new Promise((resolve, reject) => {
     })
     .catch((err) => reject(err));
 });
+const likes = {};
 
 const createGameCardHTML = (game, index) => `
   <div class="game-card">
@@ -103,21 +103,6 @@ const createGameCardHTML = (game, index) => `
   </div>
 `;
 
-const buttons = document.querySelectorAll('.like-btn');
-buttons.forEach((button, index) => {
-  const gameId = games[index].id;
-  const span = document.querySelector(`#likes-${index}`);
-  span.textContent = likes[gameId];
-
-  button.addEventListener('click', async () => {
-    await addLike(gameId);
-    likes[gameId]++;
-    span.textContent = likes[gameId];
-  });
-});
-
-let likes = {};
-
 const renderGameCards = async (games) => {
   const likes = await getLikes();
 
@@ -127,7 +112,7 @@ const renderGameCards = async (games) => {
 
     const span = document.querySelector(`#likes-count-${index}`);
     span.textContent = `${likes[game.id]} likes`;
-    
+
     const likeBtn = document.querySelector(`#like-btn-${index}`);
     likeBtn.addEventListener('click', async () => {
       const gameId = game.id;
@@ -137,9 +122,6 @@ const renderGameCards = async (games) => {
     });
   });
 };
-
-
-
 
 const handleFetchError = (err) => {
   console.error(err);
