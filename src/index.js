@@ -11,11 +11,11 @@ const options = {
   },
 };
 
-const invAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/uX47mGCyQ3QN2ImlxrQR';
+const invAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Kksh8kGPsQh7xrD8jbYD';
 
 const likeGame = async (id) => {
   const API_URL = `${invAPI}/likes`;
-  fetch(API_URL, {
+  return fetch(API_URL, {
     method: 'POST',
     body: JSON.stringify({
       item_id: id,
@@ -37,8 +37,7 @@ const getLikes = async () => {
   return objetc1;
 };
 
-// eslint-disable-next-line no-unused-vars
-const addComment = async (id, comment) => {
+const addComment = async (id, name, comment) => {
   const API_URL = `${invAPI}/comments`;
   const response = await fetch(API_URL, {
     method: 'POST',
@@ -47,11 +46,14 @@ const addComment = async (id, comment) => {
     },
     body: JSON.stringify({
       item_id: id,
-      username: 'Anonymous',
+      username: name,
       comment,
     }),
   });
-  return response.json();
+  if (response.ok) {
+    return response;
+  }
+  throw new Error(`Request failed with status ${response.status}`);
 };
 
 const getComments = async (id) => {
@@ -60,13 +62,9 @@ const getComments = async (id) => {
   return response.json();
 };
 
-getComments(10)
-  .then((comments) => {
-    console.log(comments);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+getComments(6).then((comments) => {
+  console.log(comments);
+});
 
 const fetchData = () => new Promise((resolve, reject) => {
   fetch(
@@ -111,10 +109,18 @@ const createGameCardHTML = (game, index) => `
         <img class="modal-img" src="" alt="">
           <h2 class="modal-title"></h2>
           <div class="modal-info">
-          <div class="modal-platform"><span class="span">Platform:</span> ${game.platform}</div>
-          <div class="modal-developer"><span class="span">Developer:</span> ${game.developer}</div>
-          <div class="modal-genre"><span class="span">Genre:</span> ${game.genre}</div>
-          <div class="modal-publisher"><span class="span">Publisher:</span> ${game.publisher}</div>
+          <div class="modal-platform"><span class="span">Platform:</span> ${
+  game.platform
+}</div>
+          <div class="modal-developer"><span class="span">Developer:</span> ${
+  game.developer
+}</div>
+          <div class="modal-genre"><span class="span">Genre:</span> ${
+  game.genre
+}</div>
+          <div class="modal-publisher"><span class="span">Publisher:</span> ${
+  game.publisher
+}</div>
       </div>
         </div>
         <div class="modal-footer">
@@ -126,10 +132,10 @@ const createGameCardHTML = (game, index) => `
 
 
         
-        <form id="add-comment">
+        <form id="add-comment-${game.id}">
         <input class="userInput" type="text" placeholder="Guest" /><br>
         <input class="commentInput" type="text" placeholder="Add a new comment" /><br>
-        <button type="submit">Submit</button>
+        <button class="submit-btn" type="submit">Submit</button>
         </form>     
         
         
@@ -149,7 +155,7 @@ const renderGameCards = async (games) => {
     gameCardsElement.insertAdjacentHTML('beforeend', gameCardHTML);
 
     const span = document.querySelector(`#likes-count-${index}`);
-    span.textContent = `${likes[game.id]} likes`;
+    span.textContent = `${likes[game.id] ? likes[game.id] : 0} likes`;
 
     const likeBtn = document.querySelector(`#like-btn-${index}`);
     likeBtn.addEventListener('click', async () => {
@@ -158,33 +164,48 @@ const renderGameCards = async (games) => {
       const updatedLikes = await getLikes();
       span.textContent = `${updatedLikes[gameId]} likes`;
     });
-    /*
-    const commentsBtn = document.querySelector('.comments-btn')
-    commentsBtn.addEventListener('click', ()=> {
-      console.log(`${game.id}`)
-    }) */
   });
 
   const commentsBtn = document.querySelectorAll('.comments-btn');
   commentsBtn.forEach((button, index) => {
     button.addEventListener('click', () => {
-      const commentsCont = document.querySelector('.comments-', `${games[index].id}`);
+      const commentsCont = document.querySelector(
+        '.comments-', `${games[index].id}`,
+      );
       console.log(games[index].id);
       console.log(commentsCont);
     });
   });
-};
 
-const handleFetchError = (err) => {
-  console.error(err);
+  const submitBtn = document.querySelectorAll('.submit-btn');
+
+  submitBtn.forEach((button, index) => {
+    button.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const form = button.closest('form');
+      const name = form.querySelector('.userInput').value;
+      const comment = form.querySelector('.commentInput').value;
+      const gameId = games[index].id;
+
+      if (name.trim() === '' || comment.trim() === '') {
+        return;
+      }
+
+      await addComment(gameId, name, comment);
+      // code to display comments on the page
+
+      // clear the input fields
+      form.querySelector('.userInput').value = '';
+      form.querySelector('.commentInput').value = '';
+      getComments(6);
+    });
+  });
 };
 
 const init = () => {
-  fetchData()
-    .then((data) => {
-      renderGameCards(data);
-    })
-    .catch(handleFetchError);
+  fetchData().then((data) => {
+    renderGameCards(data);
+  });
 };
 
 init();
