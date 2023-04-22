@@ -194,6 +194,19 @@ body {
   float: right;
 }
 
+.commentsUl {
+  border-radius: 7px;
+  background-color: hsl(210, 12%, 10%);
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+  align-items: center;
+  justify-content: center;
+}
+
 /* MODAL MODAL MODAL */
 
 /* FOOTER FOOTER FOOTER */

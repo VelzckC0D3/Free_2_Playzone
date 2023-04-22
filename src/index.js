@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 /* eslint-disable no-console */
 import './style.css';
 import 'bootstrap';
@@ -62,7 +63,7 @@ const getComments = async (id) => {
   return response.json();
 };
 
-getComments(6).then((comments) => {
+getComments(8).then((comments) => {
   console.log(comments);
 });
 
@@ -165,17 +166,46 @@ const renderGameCards = async (games) => {
       span.textContent = `${updatedLikes[gameId]} likes`;
     });
   });
+const commentsBtn = document.querySelectorAll('.comments-btn');
+let disabled = false; // flag to keep track of whether the action is disabled or not
 
-  const commentsBtn = document.querySelectorAll('.comments-btn');
-  commentsBtn.forEach((button, index) => {
-    button.addEventListener('click', () => {
-      const commentsCont = document.querySelector(
-        '.comments-', `${games[index].id}`,
-      );
-      console.log(games[index].id);
-      console.log(commentsCont);
-    });
+commentsBtn.forEach((button, index) => {
+  button.addEventListener('click', async () => {
+    if (disabled) {
+      return; // exit the function if the action is disabled
+    }
+
+    // disable the action for 30 seconds
+    disabled = true;
+    setTimeout(() => {
+      disabled = false;
+    }, 30000);
+
+    const commentsCont = document.querySelector('.comments-' + `${games[index].id}`);
+    console.log(games[index].id);
+    console.log(commentsCont);
+
+    // Fetch comments for item
+    const commentsResponse = await fetch(`${invAPI}/comments?item_id=${games[index].id}`);
+    const commentsData = await commentsResponse.json();
+
+    // Format comments data into HTML
+    const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
+    <li class="comment-date"> ${comment.creation_date} </li>
+    <li class="comment-user"> ${comment.username}: </li>
+    <li class="comment-comment"> ${comment.comment} </li>
+              </ul>`).join('');
+
+    const newComment = document.createElement('div');
+    newComment.innerHTML = commentsHTML;
+
+    // Clear existing comments
+    commentsCont.innerHTML = '';
+
+    commentsCont.appendChild(newComment);
   });
+});
+
 
   const submitBtn = document.querySelectorAll('.submit-btn');
 
@@ -192,12 +222,24 @@ const renderGameCards = async (games) => {
       }
 
       await addComment(gameId, name, comment);
-      // code to display comments on the page
+
+      // Update comments section with new comment
+      const commentsCont = document.querySelector('.comments-' + `${gameId}`);
+      const commentsResponse = await fetch(`${invAPI}/comments?item_id=${gameId}`);
+      const commentsData = await commentsResponse.json();
+      const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
+      <li class="comment-date"> ${comment.creation_date} </li>
+      <li class="comment-user"> ${comment.username}: </li>
+      <li class="comment-comment"> ${comment.comment} </li>
+                </ul>`).join('');
+      commentsCont.innerHTML = commentsHTML;
 
       // clear the input fields
       form.querySelector('.userInput').value = '';
       form.querySelector('.commentInput').value = '';
-      getComments(6);
+
+      // Update comments section with latest comments
+      getComments(gameId);
     });
   });
 };
