@@ -74,6 +74,9 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
+![Demo Loom](https://cdn.loom.com/sessions/thumbnails/c99f45a29c5946468ea881fe2b5a053e-with-play.gif)
+
+
 - [Live Demo Link](https://free2playzone.netlify.app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
