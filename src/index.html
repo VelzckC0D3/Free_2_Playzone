@@ -15,28 +15,55 @@
 
 <body>
     <header class="headerCont">
-        <div class="headerLogo"></div>
-        <nav class="navCont">
-            <ul class="navUl">
-                <li class="navLi"><a class="navLink" href="#">Games</a></li>
-                <li class="navLi"><a class="navLink" href="#">About</a></li>
-                <li class="navLi"><a class="navLink" href="#">Contact</a></li>
-            </ul>
-        </nav>
+      <div class="headerLogo"></div>
+      <nav class="navCont">
+        <ul class="navUl">
+          <li class="navLi"><a id="gamesLink" class="navLink" href="#">Games</a></li>
+          <li class="navLi"><a class="navLink" href="#">About</a></li>
+          <li class="navLi"><a class="navLink" href="#">Contact</a></li>
+        </ul>
+      </nav>
     </header>
     <main class="mainCont">
-        <!-- The cards will render here -->
-        <div id="game-cards"></div>
-        <!-- The modal -->
-
+      <!-- The cards will render here -->
+      <div id="game-cards"></div>
+      <!-- The modal -->
     </main>
     <footer class="footerCont">
-        <p class="footerInfo">&copy; Created by Microverse Under CC license</p>
+      <p class="footerInfo">&copy; Created by Microverse Under CC license</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-        </script>
-
-</body>
+    <script>
+      const fetchData = () =>
+        new Promise((resolve, reject) => {
+          fetch(
+            'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc',
+            {
+              method: 'GET',
+              headers: {
+                'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
+                'X-RapidAPI-Key': '16a429eb7fmshb30918cd461ee6dp1673e1jsn62d7843ea7e3',
+              },
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              resolve(data.length); // resuelve con la longitud de los datos obtenidos
+            })
+            .catch((err) => reject(err));
+        });
+  
+      const gamesLink = document.getElementById('gamesLink');
+      fetchData().then((count) => {
+        gamesLink.textContent = `Games (${count})`;
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  
+  
   <button type="button" id="comments-btn-${index}" class="comments-btn">Comments</button>
 </html>

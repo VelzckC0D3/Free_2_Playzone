@@ -82,7 +82,6 @@ export const createGameCardHTML = (game, index) => `
   game.short_description.length > 200 ? '...' : ''
 }</p>
     <div class="game-actions">
-      <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
       <span id="likes-count-${index}" class="likes-count">Likes for game ${game.id}: ${likes[game.id]}</span>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
@@ -109,7 +108,7 @@ export const createGameCardHTML = (game, index) => `
         </div>
         <div class="modal-footer">
         <div class="modal-comments">
-        <h5 class="comments-tittle">Comments</h5>
+        <h5 class="comments-tittle"></h5>
         <div class="comments-${game.id}">       
         </comments>
         </div>
@@ -165,18 +164,25 @@ export const renderGameCards = async (games) => {
       const commentsData = await commentsResponse.json();
 
       // Format comments data into HTML
-      const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
-    <li class="comment-date"> ${comment.creation_date} </li>
-    <li class="comment-user"> ${comment.username}: </li>
-    <li class="comment-comment"> ${comment.comment} </li>
-              </ul>`).join('');
+      let commentsHTML = '';
+      if (commentsData.length > 0) {
+        commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
+          <li class="comment-date"> ${comment.creation_date} </li>
+          <li class="comment-user"> ${comment.username}: </li>
+          <li class="comment-comment"> ${comment.comment} </li>
+        </ul>`).join('');
+      } else {
+        commentsHTML = '<p class="no-comments">No comments yet</p>';
+      }
 
+      // Create a new container element for the comments and add the comment count heading to it
       const newComment = document.createElement('div');
-      newComment.innerHTML = commentsHTML;
+      newComment.innerHTML = `<h5 class="comment-title">Comments (${commentsData.length || 0})</h5>${commentsHTML}`;
 
       // Clear existing comments
       commentsCont.innerHTML = '';
 
+      // Add the new comments container element to the DOM
       commentsCont.appendChild(newComment);
     });
   });
@@ -206,13 +212,25 @@ export const renderGameCards = async (games) => {
       await addComment(gameId, name, comment);
 
       const commentsCont = document.querySelector('.comments-' + `${gameId}`);
-      const commentsData = await getComments(gameId);
-      const commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
-      <li class="comment-date"> ${comment.creation_date} </li>
-      <li class="comment-user"> ${comment.username}: </li>
-      <li class="comment-comment"> ${comment.comment} </li>
-    </ul>`).join('');
-      commentsCont.innerHTML = commentsHTML;
+      const commentsResponse = await fetch(`${invAPI}/comments?item_id=${gameId}`);
+      const commentsData = await commentsResponse.json();
+
+      let commentsHTML = '';
+      if (commentsData.length > 0) {
+        commentsHTML = commentsData.map((comment) => `<ul class="commentsUl">
+          <li class="comment-date"> ${comment.creation_date} </li>
+          <li class="comment-user"> ${comment.username}: </li>
+          <li class="comment-comment"> ${comment.comment} </li>
+        </ul>`).join('');
+      } else {
+        commentsHTML = '<p class="no-comments">No comments yet</p>';
+      }
+
+      const newComment = document.createElement('div');
+      newComment.innerHTML = `<h5 class="comment-title">Comments (${commentsData.length || 0})</h5>${commentsHTML}`;
+
+      commentsCont.innerHTML = '';
+      commentsCont.appendChild(newComment);
 
       // clear the input fields
       form.querySelector('.userInput').value = '';
