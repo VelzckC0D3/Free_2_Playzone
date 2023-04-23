@@ -14,7 +14,7 @@
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
+    - [Features](#features)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -34,6 +34,13 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 Games For Free <a name="about-project"></a>
+
+<div align="center">
+
+  <img src="mock_up.png" alt="logo" width="100%"  height="auto" />
+  <br/>
+
+</div>
 
 
 **Games For Free** is a website dedicated to providing a wide range of free games for users to enjoy. The site offers a diverse selection of games in various genres, including action, adventure, puzzle, sports, and more. The games are accessible to all users and are designed to provide a fun and enjoyable gaming experience. Users can easily browse through the site to find their favorite games, which are updated regularly to provide fresh and exciting content. Whether you are a casual or avid gamer, "Games For Free" offers a fun and engaging platform for you to play games without having to pay a cent.
@@ -58,9 +65,7 @@
 
 <!-- Features -->
 
-### Key Features <a name="key-features"></a>
-
-> Describe between 1-3 key features of the application.
+### Features <a name="features"></a>
 
 - **See game information:** Users can view information about the game, such as its title, description, and rating.
 - **View game image:** Users can see an image of the game to get a better idea of what it looks like.
@@ -72,7 +77,6 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-
 - [Live Demo Link](https://free2playzone.netlify.app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -80,7 +84,6 @@
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
-
 
 To get a local copy up and running, follow these steps.
 
