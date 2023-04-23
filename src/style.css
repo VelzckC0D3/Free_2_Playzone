@@ -1,17 +1,19 @@
+/* GLOBALS GLOBALS GLOBALS */
+
 body {
   background-color: #272b30;
   color: #aaa;
   margin: 0;
 }
 
+/* GLOBALS GLOBALS GLOBALS */
+
 /* HEADER HEADER HEADER */
 
 .headerCont {
-  width: 100vw;
-  height: 3rem;
+  width: 100%;
+  height: 5rem;
   padding: 1rem 0;
-
-  /*   margin: 1rem; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -25,12 +27,9 @@ body {
   background-size: contain;
   background-position: 50% 50%;
   height: 100%;
-  width: 30%;
+  width: 15rem;
   display: flex;
 }
-
-/* .navCont {
-} */
 
 .navUl {
   display: flex;
@@ -50,12 +49,51 @@ body {
 
 /* HEADER HEADER HEADER */
 
-/* CARDS */
+/* CARDS CARDS CARDS */
+
+.mainCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #game-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
   margin: 30px 15% 30px 15%;
+}
+
+@media (max-width: 420px) {
+  .headerCont {
+    display: flex;
+    flex-direction: column;
+    height: 7rem !important;
+  }
+
+  .game-card {
+    width: 17rem;
+  }
+
+  .modal-img {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  #game-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  #game-cards {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .game-card {
+    width: 20rem !important;
+  }
 }
 
 .game-card {
@@ -64,47 +102,60 @@ body {
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
-  padding: 10px;
-  height: 350px;
+  padding: 1rem;
+  height: auto;
 }
 
-.game-card img {
+.game-img {
   max-width: 100%;
   max-height: 50%;
   object-fit: cover;
 }
 
-.game-card h2 {
+.game-title {
   font-size: 1.2rem;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-footer p {
-  text-align: center;
-  margin-left: 10%;
+.game-desc {
   display: flex;
-  align-items: center;
-}
-
-.game-card p {
   font-size: 1rem;
   text-align: center;
   margin-bottom: 10px;
+  height: 7rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-.game-card a {
-  display: inline-block;
+.game-actions {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-link {
   background-color: #8b0000;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  margin-right: 10px;
+  margin: 0;
+}
+
+.like-btn {  /* THIS ICON IS TEMPORARY */
+  background-color: transparent;
+  border: none;
+  transform: scale(2.4) translateY(-1.5px);
+  cursor: pointer;
 }
 
 .comments-btn {
+  width: 10rem;
   display: inline-block;
   background-color: #4caf50;
   color: white;
@@ -113,13 +164,88 @@ footer p {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  margin: 0 5rem;
 }
 
-a.btn:hover {
-  background-color: #b22222;
+/* CARDS CARDS CARDS */
+
+/* MODAL MODAL MODAL */
+
+.modal-content {
+  background-color: #272b30;
 }
 
-footer {
+.modal-title {
+  color: white;
+}
+
+.close-modal {
+  filter: brightness(200) !important;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-info {
+  margin: 1rem 0 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+  justify-items: center;
+}
+
+.span {
+  color: white;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.modal-comments {
+  width: 100%;
+}
+
+.comments-tittle {
+  color: white;
+}
+
+.comments {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.close-btn {
+  float: right;
+}
+
+.commentsUl {
+  border-radius: 7px;
+  background-color: hsl(210, 12%, 10%);
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MODAL MODAL MODAL */
+
+/* FOOTER FOOTER FOOTER */
+
+.footerCont {
   position: fixed;
   bottom: 0;
   background-color: #1c1e22;
@@ -127,4 +253,14 @@ footer {
   width: 100vw;
   display: flex;
   align-items: center;
+  margin: 0;
 }
+
+.footerInfo {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: 0 1.5rem;
+}
+
+/* FOOTER FOOTER FOOTER */
