@@ -11,8 +11,8 @@ body {
 /* HEADER HEADER HEADER */
 
 .headerCont {
-  width: 100vw;
-  height: 3rem;
+  width: 100%;
+  height: 5rem;
   padding: 1rem 0;
   display: flex;
   flex-direction: row;
@@ -59,9 +59,41 @@ body {
 
 #game-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
   margin: 30px 15% 30px 15%;
+}
+
+@media (max-width: 420px) {
+  .headerCont {
+    display: flex;
+    flex-direction: column;
+    height: 7rem !important;
+  }
+
+  .game-card {
+    width: 17rem;
+  }
+
+  .modal-img {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  #game-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  #game-cards {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .game-card {
+    width: 20rem !important;
+  }
 }
 
 .game-card {
@@ -87,11 +119,13 @@ body {
 }
 
 .game-desc {
+  display: flex;
   font-size: 1rem;
   text-align: center;
   margin-bottom: 10px;
   height: 7rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .game-actions {
@@ -219,13 +253,14 @@ body {
   width: 100vw;
   display: flex;
   align-items: center;
+  margin: 0;
 }
 
 .footerInfo {
   text-align: center;
-  margin-left: 10%;
   display: flex;
   align-items: center;
+  margin: 0 1.5rem;
 }
 
 /* FOOTER FOOTER FOOTER */

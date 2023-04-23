@@ -6,7 +6,7 @@ import 'bootstrap';
 import {
   gameCardsElement, options, invAPI, likeGame, getLikes, getComments, addComment,
   fetchData, likes, createGameCardHTML, renderGameCards, init,
-} from './Modules/behaviors.js';
+} from './modules/behaviors.js';
 
 gameCardsElement();
 options();

@@ -84,9 +84,7 @@ export const createGameCardHTML = (game, index) => `
     <div class="game-actions">
       <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
-      <span id="likes-count-${index}" class="likes-count">Likes for game ${
-  game.id
-}: ${likes[game.id]}</span>
+      <span id="likes-count-${index}" class="likes-count">Likes for game ${game.id}: ${likes[game.id]}</span>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
     </div>
   </div>
@@ -100,22 +98,13 @@ export const createGameCardHTML = (game, index) => `
         <button type="button" class="btn-close btn-close-white btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <img src="${game.thumbnail}" alt="" aria-label="">
-        <img class="modal-img" src="" alt="">
+        <img class="modal-img" src="${game.thumbnail}" alt="" aria-label="">
           <h2 class="modal-title"></h2>
           <div class="modal-info">
-          <div class="modal-platform"><span class="span">Platform:</span> ${
-  game.platform
-}</div>
-          <div class="modal-developer"><span class="span">Developer:</span> ${
-  game.developer
-}</div>
-          <div class="modal-genre"><span class="span">Genre:</span> ${
-  game.genre
-}</div>
-          <div class="modal-publisher"><span class="span">Publisher:</span> ${
-  game.publisher
-}</div>
+          <div class="modal-platform"><span class="span">Platform:</span> ${game.platform}</div>
+          <div class="modal-developer"><span class="span">Developer:</span> ${game.developer}</div>
+          <div class="modal-genre"><span class="span">Genre:</span> ${game.genre}</div>
+          <div class="modal-publisher"><span class="span">Publisher:</span> ${game.publisher}</div>
       </div>
         </div>
         <div class="modal-footer">
