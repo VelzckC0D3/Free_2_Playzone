@@ -82,7 +82,6 @@ export const createGameCardHTML = (game, index) => `
   game.short_description.length > 200 ? '...' : ''
 }</p>
     <div class="game-actions">
-      <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
       <span id="likes-count-${index}" class="likes-count">Likes for game ${game.id}: ${likes[game.id]}</span>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
