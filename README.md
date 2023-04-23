@@ -33,36 +33,26 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+# 📖 Games For Free <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
 
-**[your_project__name]** is a...
+**Games For Free** is a website dedicated to providing a wide range of free games for users to enjoy. The site offers a diverse selection of games in various genres, including action, adventure, puzzle, sports, and more. The games are accessible to all users and are designed to provide a fun and enjoyable gaming experience. Users can easily browse through the site to find their favorite games, which are updated regularly to provide fresh and exciting content. Whether you are a casual or avid gamer, "Games For Free" offers a fun and engaging platform for you to play games without having to pay a cent.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Describe the tech stack and include only the relevant sections that apply to your project.
-
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="https://webpack.js.org/">Webpack</a></li>
+    <li>JavaScript (ES6+)</li>
   </ul>
 </details>
-
 <details>
-  <summary>Server</summary>
+<summary>API</summary>
   <ul>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-  </ul>
-</details>
-
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+    <li><a href="https://rapidapi.com/">RapidAPI</a></li>
   </ul>
 </details>
 
@@ -72,9 +62,9 @@
 
 > Describe between 1-3 key features of the application.
 
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- **See game information:** Users can view information about the game, such as its title, description, and rating.
+- **View game image:** Users can see an image of the game to get a better idea of what it looks like.
+- **Access game URL:**  Users can easily access the URL to play the game directly from the application.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -82,7 +72,6 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
 
 - [Live Demo Link](https://yourdeployedapplicationlink.com)
 
@@ -92,7 +81,6 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
 
 To get a local copy up and running, follow these steps.
 
@@ -176,19 +164,15 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+👤 **Alejandro Velasquez**
 
-👤 **Author1**
+- GitHub: [@VelzckC0D3](https://github.com/VelzckC0D3)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/VelzckC0D3)
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+👤 **Marco Almada**
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@MarcoDDM](https://github.com/MarcoDDM)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/marcoalmadaar)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -196,11 +180,10 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Describe 1 - 3 features you will add to the project.
 
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]**
+- [ ] **User Registration:** Allow users to register for an account and save their game progress and scores.
+- [ ] **Online Gaming:**  Enable users to play games online with others in real-time.
+- [ ] **Social Media Integration:** Allow users to share their achievements and progress on social media platforms.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -218,9 +201,7 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-> Write a message to encourage readers to support your project
-
-If you like this project...
+If you like this project give us a star and hire us...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -228,25 +209,7 @@ If you like this project...
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-> Give credit to everyone who inspired your codebase.
-
-I would like to thank...
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FAQ (optional) -->
-
-## ❓ FAQ <a name="faq"></a>
-
-> Add at least 2 questions new developers would ask when they decide to use your project.
-
-- **[Question_1]**
-
-  - [Answer_1]
-
-- **[Question_2]**
-
-  - [Answer_2]
+A big thank you to Jorlanio for his tremendous help throughout the project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
