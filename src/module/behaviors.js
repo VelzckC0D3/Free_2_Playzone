@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-concat */
 export const gameCardsElement = document.querySelector('#game-cards');
+export const modalElement = document.querySelector('.modals');
 export const options = {
   method: 'GET',
   headers: {
@@ -83,52 +84,48 @@ export const createGameCardHTML = (game, index) => `
   game.short_description.length > 200 ? '...' : ''
 }</p>
     <div class="game-actions">
+    <a class="game-link" href="${game.game_url}" target="_blank">Play Now!</a>
       <button id="like-btn-${index}" class="like-btn">❤️</button>
       <span id="likes-count-${index}" class="likes-count">Likes for game ${game.id}: ${likes[game.id]}</span>
       <button type="button" class="comments-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-${index}">Comments</button>
-    </div>
-  </div>
+`;
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal-${index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+export const createModalHTML = (game, index) => `
+<!-- Modal -->
+<div class="modal fade" id="exampleModal-${index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">${game.title}</h5>
         <button type="button" class="btn-close btn-close-white btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+      </div>
+      <div class="modal-body">
         <img class="modal-img" src="${game.thumbnail}" alt="" aria-label="">
-          <h2 class="modal-title"></h2>
-          <div class="modal-info">
+        <h2 class="modal-title"></h2>
+        <div class="modal-info">
           <div class="modal-platform"><span class="span">Platform:</span> ${game.platform}</div>
           <div class="modal-developer"><span class="span">Developer:</span> ${game.developer}</div>
           <div class="modal-genre"><span class="span">Genre:</span> ${game.genre}</div>
           <div class="modal-publisher"><span class="span">Publisher:</span> ${game.publisher}</div>
+        </div>
       </div>
-        </div>
-        <div class="modal-footer">
+      <div class="modal-footer">
         <div class="modal-comments">
-        <h5 class="comments-tittle"></h5>
-        <div class="comments-${game.id}">       
-        </comments>
-        </div>
-
-
-        
-        <form id="add-comment-${game.id}">
-        <input class="userInput" type="text" placeholder="Guest" /><br>
-        <input class="commentInput" type="text" placeholder="Add a new comment" /><br>
-        <button class="submit-btn" type="submit">Submit</button>
-        </form>     
-        
-        
-
-        <button type="button" class="close-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <h5 class="comments-tittle"></h5>
+          <div class="comments-${game.id}"></div>
+          <form id="add-comment-${game.id}">
+            <input class="userInput" type="text" placeholder="Guest" /><br>
+            <input class="commentInput" type="text" placeholder="Add a new comment" /><br>
+            <button class="submit-btn" type="submit">Submit</button>
+          </form>     
+          <button type="button" class="close-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 `;
 
 export const renderGameCards = async (games) => {
@@ -136,7 +133,9 @@ export const renderGameCards = async (games) => {
 
   games.forEach((game, index) => {
     const gameCardHTML = createGameCardHTML(game, index);
+    const modalsHTML = createModalHTML(game, index);
     gameCardsElement.insertAdjacentHTML('beforeend', gameCardHTML);
+    modalElement.insertAdjacentHTML('beforeend', modalsHTML);
 
     const span = document.querySelector(`#likes-count-${index}`);
     span.textContent = `${likes[game.id] ? likes[game.id] : 0} likes`;
@@ -245,5 +244,13 @@ export const init = () => {
     renderGameCards(data);
   });
 };
+
+export const headerLogo = document.querySelector('.headerLogo');
+export const link = headerLogo.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 
 init();
