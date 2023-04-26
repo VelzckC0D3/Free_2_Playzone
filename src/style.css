@@ -1,9 +1,19 @@
 /* GLOBALS GLOBALS GLOBALS */
 
+* {
+  scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-  background-color: #272b30;
+  background-color: #1e191d;
   color: #aaa;
   margin: 0;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 /* GLOBALS GLOBALS GLOBALS */
@@ -19,16 +29,22 @@ body {
   justify-content: space-around;
   align-items: center;
   box-shadow: 2px 9px 23px 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0);
+  position: fixed;
+  z-index: 2;
+  top: 0;
 }
 
 .headerLogo {
-  background-image: url(./img/logo-white.svg);
+  background-image: url(./img/header-logo.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 50% 50%;
   height: 100%;
   width: 15rem;
   display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 .navUl {
@@ -49,12 +65,179 @@ body {
 
 /* HEADER HEADER HEADER */
 
+/* PARALLAX PARALLAX */
+
+.wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 10px;
+}
+
+.parallaxImg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  background-size: cover;
+}
+
+.parallaxImg1 {
+  background-image: url(./img/bg1.webp);
+  transform: translateZ(-60px) scale(7);
+}
+
+.parallaxImg2 {
+  background-image: url(./img/bg2.webp);
+  transform: translateZ(-40px) scale(5);
+}
+
+.parallaxImg3 {
+  background-image: url(./img/bg3.webp);
+  transform: translateZ(-30px) scale(4);
+}
+
+.parallaxImg4 {
+  background-image: url(./img/bg4.webp);
+  transform: translateZ(-20px) scale(3);
+}
+
+.parallaxImg5 {
+  background-image: url(./img/bg5.webp);
+  transform: translateZ(-10px) scale(2);
+}
+
+/* PARALLAX PARALLAX */
+
+/* HERO HERO HERO */
+
+.heroCont {
+  margin-top: 5rem;
+  width: 100vw;
+  height: 79vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  /*   background-image: url(./img/hero-bg.webp);
+  filter: hue-rotate(38deg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%; */
+  position: relative;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+.heroInfo {
+  width: 50vw;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: -10px 14px 45px 8px rgba(0, 0, 0, 0.75);
+  margin: 2rem;
+}
+
+.heroDesc {
+  width: 100%;
+  color: white;
+}
+
+/* HERO HERO HERO */
+
+/* DIVIDER DIVIDER */
+
+.dividerCont {
+  width: 100vw;
+  height: 2.4rem;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  -webkit-text-stroke: 1px;
+}
+
+.divider {
+  margin: 0.5rem 2rem;
+}
+
+/* DIVIDER DIVIDER */
+
+/* ABOUT ABOUT ABOUT */
+
+.aboutCont {
+  height: auto;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 5px solid black;
+  background-image: url(./img/aboutbg2.webp);
+  background-color: rgba(17, 10, 21, 0.8);
+  background-position: center;
+  background-size: cover;
+  filter: hue-rotate(16deg);
+}
+
+.aboutInfo {
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  border-radius: 10px;
+}
+
+.aboutImg {
+  right: 0;
+  width: 100%;
+  height: 25rem;
+  background-image: url(./img/dragon.webp);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  color: transparent;
+  filter: hue-rotate(210deg);
+}
+
+.aboutText {
+  color: white;
+}
+
+/* ABOUT ABOUT ABOUT */
+
 /* CARDS CARDS CARDS */
+
+.mainBg {
+  background-color: #1e191d;
+  background-image: url(./img/BG.webp);
+  background-size: cover;
+  width: 100%;
+  height: 130vh;
+  position: absolute;
+  z-index: -1;
+  transform: translateZ(-10px) scale(2);
+}
 
 .mainCont {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+
+  /*   background-image: url(./img/BG.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 100% 100%; */
 }
 
 #game-cards {
@@ -62,38 +245,6 @@ body {
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
   margin: 30px 15% 30px 15%;
-}
-
-@media (max-width: 420px) {
-  .headerCont {
-    display: flex;
-    flex-direction: column;
-    height: 7rem !important;
-  }
-
-  .game-card {
-    width: 17rem;
-  }
-
-  .modal-img {
-    width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  #game-cards {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  #game-cards {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-
-  .game-card {
-    width: 20rem !important;
-  }
 }
 
 .game-card {
@@ -104,6 +255,7 @@ body {
   border: 1px solid black;
   padding: 1rem;
   height: auto;
+  background-color: black;
 }
 
 .game-img {
@@ -249,10 +401,11 @@ body {
   position: fixed;
   bottom: 0;
   background-color: #1c1e22;
-  height: 10%;
+  height: 2.5rem;
   width: 100vw;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0;
 }
 
@@ -260,7 +413,65 @@ body {
   text-align: center;
   display: flex;
   align-items: center;
-  margin: 0 1.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 /* FOOTER FOOTER FOOTER */
+
+/* RESPONSIVE RESPONSIVE */
+
+@media (max-width: 500px) {
+  .headerCont {
+    display: flex;
+    flex-direction: column;
+    height: 7rem !important;
+  }
+
+  .game-card {
+    width: 17rem;
+  }
+
+  .modal-img {
+    width: 100%;
+  }
+
+  .heroCont {
+    margin-top: 7rem;
+    align-items: center;
+  }
+
+  .heroInfo {
+    width: 100vw;
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  #game-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  #game-cards {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .game-card {
+    width: 20rem !important;
+  }
+}
+
+/* RESPONSIVE RESPONSIVE */
+
+/* .modal-backdrop {
+
+  z-index: -1 !important;
+}
+
+.modal {
+  top: 120rem !important;
+  z-index: 2;
+  transform: scale(0.85) !important;
+} */
