@@ -1,36 +1,31 @@
 <a name="readme-top"></a>
-
 <div align="center">
-
+  <img src="https://github.com/VelzckC0D3/SQL_Database/assets/92229666/64c8d8a7-b625-4a25-847a-ea02e00df2f4" alt="Sin título-1">
 </div>
-
 <!-- TABLE OF CONTENTS -->
 
-# 📗 Table of Contents
+# 📗 Index
 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
-    - [Features](#features)
+    - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
+  - [Deployment](#deployment)
+- [👥 Author](#author)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Games For Free <a name="about-project"></a>
+# 📖 [Free 2 Play Zone] `WebPack` `ES6` <a name="about-project"></a>
 
 <div align="center">
 
@@ -47,33 +42,39 @@
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://webpack.js.org/">Webpack</a></li>
-    <li>JavaScript (ES6+)</li>
-  </ul>
-</details>
+    <summary>Client</summary>
+    <ul>
+      <li><a href="https://webpack.js.org/">WebPack</a></li>
+      <li><a href="https://babeljs.io/">Babel</a></li>
+      <li><a href="https://eslint.org/">ESLint</a></li>
+    </ul>
+  </details>
+
 <details>
-<summary>API</summary>
+<summary>Database</summary>
   <ul>
-    <li><a href="https://rapidapi.com/">RapidAPI</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">Local Storage</a></li>
+   <li><a href="https://www.freetogame.com/api-doc">Free to game API</a></li>
   </ul>
 </details>
 
 <!-- Features -->
 
-### Features <a name="features"></a>
+### Key Features <a name="key-features"></a>
 
-- **See game information:** Users can view information about the game, such as its title, description, and rating.
-- **View game image:** Users can see an image of the game to get a better idea of what it looks like.
-- **Access game URL:**  Users can easily access the URL to play the game directly from the application.
+  - **[See Game Info]** Users can view information about the game, such as its title, description, and rating.
+  - **[View Game Img]** Users can see an image of the game to get a better idea of what it looks like.
+  - **[Play Game]** Users can directly go to the game website without having to search it.
+  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LIVE DEMO -->
 
-## 🚀 Live Demo <a name="live-demo"></a>
-- [Live Demo Link](https://free2playzone.netlify.app)
+## 🚀 Live Demo & preview <a name="live-demo"></a>
+
+- _You can visit the live demo [here](https://free2playzone.netlify.app/)_
+ 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -87,81 +88,55 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<!--
-Example command:
-
 ```sh
- gem install rails
+ To have a computer, Internet, Keyboard and Mouse
 ```
- -->
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-<!--
-Example commands:
-
 ```sh
-  cd my-folder
-  git clone git@github.com:myaccount/my-project.git
+  Open it with Visual Studio Code (or your preffered IDE), and open a server with "LiveServer".
 ```
---->
 
 ### Install
 
 Install this project with:
 
-<!--
-Example command:
-
 ```sh
-  cd my-project
-  gem install
+  Installation is not necessary
 ```
---->
 
 ### Usage
 
 To run the project, execute the following command:
 
-<!--
-Example command:
-
 ```sh
-  rails server
+npm run start
 ```
---->
-
-### Run tests
-
-To run tests, run the following command:
-
-<!--
-Example command:
-
-```sh
-  bin/rails test test/models/article_test.rb
-```
---->
 
 ### Deployment
 
-You can deploy this project using:
-
-<!--
-Example:
+You can deploy this project following these steps:
 
 ```sh
-
+Open the console and run the command: npm run build
+This command will build the project for deployment.
 ```
- -->
+```sh
+Once the build process is complete, run the command: npm run start
+This command will start the deployment process.
+```
+```sh
+The website will be deployed and accessible for use.
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- AUTHORS -->
+<!-- AUTHOR -->
 
-## 👥 Authors <a name="authors"></a>
+## 👥 Authors <a name="author"></a>
 
 👤 **Alejandro Velasquez**
 
@@ -172,17 +147,6 @@ Example:
 
 - GitHub: [@MarcoDDM](https://github.com/MarcoDDM)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/marcoalmadaar)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FUTURE FEATURES -->
-
-## 🔭 Future Features <a name="future-features"></a>
-
-
-- [ ] **User Registration:** Allow users to register for an account and save their game progress and scores.
-- [ ] **Online Gaming:**  Enable users to play games online with others in real-time.
-- [ ] **Social Media Integration:** Allow users to share their achievements and progress on social media platforms.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -200,15 +164,14 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project give us a star and hire us...
+If you like this project, be pending on my profile since I'll be doing much more! 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
-
-A big thank you to Jorlanio for his tremendous help throughout the project.
+I would like to thanks my Microverse Team and partners for helping me to get this done.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -217,7 +180,5 @@ A big thank you to Jorlanio for his tremendous help throughout the project.
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
