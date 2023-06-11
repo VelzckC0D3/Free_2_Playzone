@@ -141,12 +141,12 @@ The website will be deployed and accessible for use.
 👤 **Alejandro Velasquez**
 
 - GitHub: [@VelzckC0D3](https://github.com/VelzckC0D3)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/VelzckC0D3)
+- LinkedIn: [VelzckC0D3](https://linkedin.com/in/VelzckC0D3)
 
 👤 **Marco Almada**
 
 - GitHub: [@MarcoDDM](https://github.com/MarcoDDM)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/marcoalmadaar)
+- LinkedIn: [MarcoAlmada](https://linkedin.com/in/marcoalmadaar)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
